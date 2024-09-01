@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #container {
+            background-color: rgb(214, 139, 28);
+            width: 1000px;
+            height: 1000px;
+            position: relative;
+        }
+
+        #ball {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background-color: black;
+            top: 400px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="ball"></div>
+    </div>
+
+    <script>
+        setInterval(bounce, 100);
+        let pos = 0;
+        function bounce(){
+             let ball = document.getElementById("ball");
+            ball.style.top = 400 + Math.sin(pos)*100 + 'px';
+            ball.style.left = pos + 'px';
+            ball.style.borderRadius = pos + 'px'; 
+            pos ++;
+        }
+    </script>
+</body>
+</html>
