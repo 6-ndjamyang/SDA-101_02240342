@@ -4,63 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Gadgets Store</title>
-    <style>
-        /* Add your CSS styles here */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-            padding: 0.5rem;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1rem;
-        }
-        main {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            padding: 2rem;
-        }
-        .product {
-            border: 1px solid #ddd;
-            padding: 1rem;
-            text-align: center;
-
-
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <header>
-        <h1>Tech Gadgets Store</h1>
-    </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Products</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-    </nav>
+    <header class="header">
+        <nav class="header__nav" id="navbar">
+          <ul class="header__list">
+            <li class="header__item"><a href="index.html" class="header__link">Home</a></li>
+            <li class="header__item"><a href="about.html" class="header__link">About</a></li>
+            <li class="header__item"><a href="services.html" class="header__link">Services</a></li>
+            <li class="header__item"><a href="contact.html" class="header__link">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
     <main>
         <!-- Example product cards -->
+        <div class="product">
+            <img src="laptop.jpeg" alt="Laptop">
+            <h2>Laptop</h2>
+            <p>Nu.99,999</p>
+        </div>
         <div class="product">
             <img src="laptop.jpeg" alt="Laptop">
             <h2>Laptop</h2>
@@ -70,10 +34,19 @@
     </main>
     <footer>
         <a href="#">Privacy Policy</a> |
-        <a href="#">Terms of Service</a> |
-        <a href="#"><img src="facebook-icon.png" alt="Facebook"></a>
-        <a href="#"><img src="twitter-icon.png" alt="Twitter"></a>
-        <a href="#"><img src="instagram-icon.png" alt="Instagram"></a>
+        <a href="#">Terms of Service</a>
+
+        <div class="icons">
+            <a href="#"><ion-icon name = "logo-facebook"></ion-icon></a>
+            <a href="#"><ion-icon name = "logo-instagram"></ion-icon></a>
+            <a href="#"><ion-icon name = "logo-twitter"></ion-icon></a>
+            <a href="#"><ion-icon name = "logo-youtube"></ion-icon></a>
+            <Script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></Script>
+        </div>
+
+        
+        
+        
     </footer>
 </body>
 </html>
