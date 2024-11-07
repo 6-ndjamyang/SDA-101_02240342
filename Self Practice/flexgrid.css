@@ -1,0 +1,16 @@
+• flex-containert{
+            display: flex; 
+            justify-content: space-around;
+            }
+
+• ftex-item {
+            border: 1px solid black;
+            }
+
+• grid-container {
+            display: grid;
+            }
+
+-grid-itent {
+            border: 1px solid black;
+            }   

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Button Custom Element</title>
+    <style>
+        toggle-button button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <toggle-button>Hello
+        
+    </toggle-button>
+
+    <script>
+        class ToggleButton extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+                
+                // Initialize state to "ON" if no state is saved, otherwise load from localStorage
+                this.state = this.getSavedState() === 'OFF' ? false : true;
+                this.render();
+            }
+
+            connectedCallback() {
+                this.shadowRoot.querySelector('button').addEventListener('click', this.toggle.bind(this));
+            }
+
+            disconnectedCallback() {
+                this.shadowRoot.querySelector('button').removeEventListener('click', this.toggle.bind(this));
+            }
+
+            getSavedState() {
+                return localStorage.getItem('toggle-button-state'); // Retrieve saved state from localStorage
+            }
+
+            saveState() {
+                localStorage.setItem('toggle-button-state', this.state ? 'ON' : 'OFF');
+            }
+
+            toggle() {
+                // Toggle the state
+                this.state = !this.state;
+                // Save the new state to localStorage
+                this.saveState();
+                // Update the button display
+                this.render();
+                // Dispatch a custom event with the current state
+                this.dispatchEvent(new CustomEvent('toggle-changed', { detail: { state: this.state ? 'ON' : 'OFF' } }));
+            }
+
+            render() {
+                // Set button color and text based on state
+                const color = this.state ? 'green' : 'red';
+                const text = this.state ? 'ON' : 'OFF';
+                this.shadowRoot.innerHTML = `
+                    <button style="background-color: ${color};">${text}</button>
+                `;
+            }
+        }
+
+        customElements.define('toggle-button', ToggleButton);
+    </script>
+</body>
+</html>

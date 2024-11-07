@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Custom Element</title>
+</head>
+<body>
+    <!-- Custom elements with different name and role attributes -->
+    <user-profile name="Tawla" role="Engineer"></user-profile>
+    <user-profile name="Taw Po" role="Manager"></user-profile>
+
+    <script>
+        class UserProfile extends HTMLElement {
+            constructor() {
+                super();
+                this.attachShadow({ mode: 'open' });
+
+                // Template with basic styling
+                const template = document.createElement('template');
+                template.innerHTML = `
+                    <style>
+                        .card {
+                            border: 1px solid #ccc;
+                            padding: 16px;
+                            border-radius: 8px;
+                            max-width: 200px;
+                            font-family: Arial, sans-serif;
+                            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+                        }
+                        .name {
+                            font-size: 1.2em;
+                            font-weight: bold;
+                            margin: 0;
+                        }
+                        .role {
+                            font-size: 1em;
+                            color: #555;
+                        }
+                    </style>
+                    <div class="card">
+                        <p class="name"></p>
+                        <p class="role"></p>
+                    </div>
+                `;
+
+                // Clone the template content and attach it to shadow DOM
+                this.shadowRoot.appendChild(template.content.cloneNode(true));
+            }
+
+            // Attributes to monitor for changes
+            static get observedAttributes() {
+                return ['name', 'role'];
+            }
+
+            // Update the display when attributes change
+            attributeChangedCallback(name, oldValue, newValue) {
+                this.render();
+            }
+
+            // Render the attributes in the template
+            render() {
+                this.shadowRoot.querySelector('.name').textContent = this.getAttribute('name');
+                this.shadowRoot.querySelector('.role').textContent = this.getAttribute('role');
+            }
+
+            // Initial rendering when element is added to the DOM
+            connectedCallback() {
+                this.render();
+            }
+        }
+
+        // Define the custom element
+        customElements.define('user-profile', UserProfile);
+    </script>
+</body>
+</html>
